@@ -1,0 +1,10 @@
+server:
+  port: 8881
+  servlet:
+    context-path: /urlshortcut
+
+credential:
+  app:
+    secret: asfamoj89v98sv97h10u9vq3we232fn9wvv37282nv872nv78n2v3728
+    token-type: "Bearer "
+    exp-token-time-days: 30
