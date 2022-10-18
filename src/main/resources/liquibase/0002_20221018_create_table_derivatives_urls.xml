@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2" author="nesterenko-n.a" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="DERIVATIVES_URLS"/></not>
+        </preConditions>
+        <createTable
+                tableName="DERIVATIVES_URLS"
+                remarks="Таблица кандидатов"
+        >
+            <column name="ID" type="BIGSERIAL" autoIncrement="true" remarks="Идентификатор кандидата">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CALL_COUNT" type="BIGINT" remarks="Количество вызовов">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="VARCHAR(255)" remarks="Код сайта для переадрисации">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="DERIVATIVE_URL" type="VARCHAR(255)" remarks="Описание резюме">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="SITE_ID" type="BIGINT" remarks="ID корня сайта">
+                <constraints nullable="false"  foreignKeyName="FK_DERIVATIVES_URLS_SITES" references="SITES(ID)"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="DERIVATIVES_URLS" columnNames="ID"/>
+    </changeSet>
+</databaseChangeLog>

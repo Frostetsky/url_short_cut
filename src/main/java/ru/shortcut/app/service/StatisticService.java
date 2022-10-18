@@ -1,5 +1,6 @@
 package ru.shortcut.app.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.shortcut.app.model.dto.SiteDto;
 import ru.shortcut.app.model.dto.StatisticDto;
@@ -10,9 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class StatisticService {
 
-    private DerivativeUrlRepository derivativeUrlRepository;
+    private final DerivativeUrlRepository derivativeUrlRepository;
 
     public List<StatisticDto> getStatisticBySite(SiteDto siteDto) {
         var entitySite = new Site();

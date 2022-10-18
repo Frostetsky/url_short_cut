@@ -26,8 +26,8 @@ public class StatisticController {
 
 
     @GetMapping("/statistic")
-    public List<StatisticDto> findAll(@RequestHeader(TAG_AUTHORIZATION) String token,
-                                      HttpServletRequest httpServletRequest) {
+    public List<StatisticDto> findAllStatisticBySite(@RequestHeader(TAG_AUTHORIZATION) String token,
+                                                     HttpServletRequest httpServletRequest) {
 
         var siteName = secretHelperConfigurator.decodeTokenAndGetSite(token, httpServletRequest.getRemoteAddr());
         var siteDto = siteService.findBySite(siteName);

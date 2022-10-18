@@ -5,15 +5,11 @@ import org.springframework.stereotype.Service;
 import ru.shortcut.app.ex.NoSuchValueException;
 import ru.shortcut.app.model.dto.DerivativeUrlDto;
 import ru.shortcut.app.model.dto.SiteDto;
-import ru.shortcut.app.model.dto.StatisticDto;
 import ru.shortcut.app.persistence.DerivativeUrl;
 import ru.shortcut.app.persistence.Site;
 import ru.shortcut.app.repository.DerivativeUrlRepository;
 import ru.shortcut.app.util.SecretHelperConfigurator;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

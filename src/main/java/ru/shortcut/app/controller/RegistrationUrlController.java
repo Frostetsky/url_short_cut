@@ -1,12 +1,10 @@
 package ru.shortcut.app.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.shortcut.app.model.dto.DerivativeUrlDto;
 import ru.shortcut.app.model.response.UrlCodeResponse;
 import ru.shortcut.app.model.request.UrlRequest;
@@ -51,5 +49,12 @@ public class RegistrationUrlController {
                     .code(code)
                     .build());
         }).orElseGet(() -> ResponseEntity.status(HttpStatus.FORBIDDEN).build());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> handlerConstraintViolationException() {
+        return new ResponseEntity<>(
+                "Данный url уже зарегистрирован в системе, используйте код выданный ранее.",
+                HttpStatus.BAD_REQUEST);
     }
 }
